@@ -9,8 +9,8 @@ import IconKey from '../svg/key-silhouette-security-tool-interface-symbol-of-pas
 
 export default function Form(){
     return(
-        <div className="w-1/2 bg-green-900/90">
-                    <div className="flex bg-yellow-100 rounded-xl m-[2.47rem]">
+        <div className="w-1/2 bg-yellow-500/20">
+                    <div className="flex bg-gray-300 rounded-xl m-[2.47rem]">
                         <form action="post" className="flex flex-col p-10 w-full">
 
                             <label className="flex text-gray-700 font-light text-sm mb-2"><Image src={IconInfo} alt="#" className="w-5 h-5 m-1" />User Name</label>
@@ -36,8 +36,8 @@ export default function Form(){
 
                             <label className="flex text-gray-700 font-light mb-2"><Image src={IconInfo} alt="#" className="w-5 h-5 m-1" />Date</label>
                             <div className="flex hover:drop-shadow-xl duration-300">
-                                <Image src={IconDate} alt="#" className="flex rounded-l-lg bg-white border border-gray-300 p-3 pr-1 w-10 h-11 border-r-transparent" />
-                                <input className="mb-5 h-11 w-full rounded-r-lg border border-l-transparent border-gray-300 bg-white text-gray-900 focus:outline-none focus:bg-slate-200 px-4 py-2 duration-500"
+                                
+                                <input className="mb-5 h-11 w-full rounded-lg border border-gray-300 bg-white text-gray-900 focus:outline-none focus:bg-slate-200 px-4 py-2 duration-500"
                                     type="month"
                                     placeholder="Day / Month / Year" />
                             </div>

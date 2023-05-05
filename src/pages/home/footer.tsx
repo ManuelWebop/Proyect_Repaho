@@ -7,18 +7,18 @@ import LogoIcon4 from '../svg/icons8-github.svg'
 
 export default function Footer(){
     return(
-        <footer className="bg-yellow-300/70 p-10">
+        <footer className=" bg-violet-800/20 p-10">
                 <div className="flex justify-center border-b-black border border-x-transparent border-t-transparent">
-                    <button className="p-1 m-4 transition ease-in-out delay-100 bg-yellow-400/30 border border-black rounded-md hover:-translate-y-1 hover:scale-110 hover:bg-blue-500 duration-300">
+                    <button className="p-1 m-4 transition ease-in-out delay-100 bg-pink-700/50 border border-black rounded-md hover:-translate-y-1 hover:scale-110 hover:bg-blue-500 duration-300">
                     <Image src={LogoIcon1} alt="#" className="w-10" />
                     </button>
-                    <button className="p-1 m-4 transition ease-in-out delay-100 bg-yellow-400/30 border border-black rounded-md hover:-translate-y-1 hover:scale-110 hover:bg-pink-500 duration-300">
+                    <button className="p-1 m-4 transition ease-in-out delay-100 bg-pink-700/50 border border-black rounded-md hover:-translate-y-1 hover:scale-110 hover:bg-pink-500 duration-300">
                         <Image src={LogoIcon2} alt="#" className="w-10" />
                     </button>
-                    <button className="p-1 m-4 transition ease-in-out delay-100 bg-yellow-400/30 border border-black rounded-md hover:-translate-y-1 hover:scale-110 hover:bg-orange-600 duration-300">
+                    <button className="p-1 m-4 transition ease-in-out delay-100 bg-pink-700/50 border border-black rounded-md hover:-translate-y-1 hover:scale-110 hover:bg-orange-600 duration-300">
                     <Image src={LogoIcon3} alt="#" className="w-10" />
                     </button>
-                    <button className="p-1 m-4 transition ease-in-out delay-100 bg-yellow-400/30 border border-black rounded-md hover:-translate-y-1 hover:scale-110 hover:bg-white duration-300">
+                    <button className="p-1 m-4 transition ease-in-out delay-100 bg-pink-700/50 border border-black rounded-md hover:-translate-y-1 hover:scale-110 hover:bg-white duration-300">
                     <Image src={LogoIcon4} alt="#" className="w-10" />
                     </button>
 

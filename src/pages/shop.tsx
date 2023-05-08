@@ -18,7 +18,7 @@ export default function Shop() {
             </nav>
 
             <div className="flex flex-row bg-slate-100/30">
-                <div className="flex flex-col border border-slate-700/30 rounded-lg bg-teal-700/20 m-5 p-8 h-1/6 w-1/4">
+                <div className="flex flex-col border border-slate-700/30 rounded-lg bg-teal-700/20 m-5 p-8 h-1/6 w-1/4  shadow-lg">
                     <div className="flex">
                         <p className="text-4xl ml-1 font-thin">Opciones</p>
                     </div>
@@ -35,8 +35,8 @@ export default function Shop() {
                     </div>
                 </div>
 
-                <div className="flex flex-col bg-teal-700/20 border border-slate-700/30 m-5 w-5/6 rounded-lg">
-                    <div className="grid grid-cols-5">
+                <div className="flex flex-col bg-teal-700/20 border border-slate-700/30 m-5 w-5/6 rounded-lg shadow-lg">
+                    <div className="grid grid-cols-5 drop-shadow-lg">
 
                         <div className="flex flex-col bg-white m-1">
                             <div className="flex h-full">

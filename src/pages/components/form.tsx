@@ -9,9 +9,9 @@ import IconKey from '../svg/key-silhouette-security-tool-interface-symbol-of-pas
 
 export default function Form(){
     return(
-        <div className="w-1/2 bg-yellow-500/20">
-                    <div className="flex bg-gray-300 rounded-xl m-[2.47rem]">
-                        <form action="post" className="flex flex-col p-10 w-full">
+        <div className="w-1/2 max-sm:w-full max-sm:h-1/2 bg-yellow-500/20">
+                    <div className="flex bg-gray-300 rounded-xl m-[2.47rem] max-sm:m-5">
+                        <form action="post" className="flex flex-col p-10 w-full max-sm:w-1/2">
 
                             <label className="flex text-gray-700 font-light text-sm mb-2"><Image src={IconInfo} alt="#" className="w-5 h-5 m-1" />User Name</label>
                             <div className="flex hover:drop-shadow-xl duration-300">

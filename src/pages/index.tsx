@@ -20,11 +20,11 @@ export default function Home() {
     
     return (
         
-        <div className="bg-local">
+        <div>
           
 
-            <header className="bg-cover header h-screen p-5 object-cover flex flex-col bg-center ">
-                <Navar />
+            <header className="m-auto bg-no-repeat header h-screen p-5 object-cover flex flex-col bg-center">
+                <Navar />{/*Pendiente de responsavibilidad */}
                 <Seach />
             </header>
            

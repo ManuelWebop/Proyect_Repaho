@@ -2,9 +2,9 @@
 
 export default function Seach() {
     return (
-        <div className="flex flex-col justify-center items-center mt-10 h-2/3 max-sm:w-full max-sm:h-auto max-sm:mt-52 ">
+        <div className="flex flex-row justify-center items-center mt-32 h-2/3 max-sm:w-full max-sm:h-auto max-sm:mt-44 ">
    
-            <div className="flex flex-col rounded-xl backdrop-blur-sm bg-white/30 select-none w-3/5 h-full text-center max-sm:w-full">
+            <div className="flex flex-col rounded-xl backdrop-blur-sm bg-white/30 select-none w-3/5 text-center max-sm:w-full">
                 <div className="flex flex-col m-10 max-sm:h-auto">
 
                 <p className="text-9xl max-sm:text-7xl m-auto mb-20 max-sm:mb-0 font-bold text-slate-50 drop-shadow-2xl border-2 border-x-transparent border-y-transparent border-b-gray-700/40">Repaho</p>

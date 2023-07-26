@@ -5,13 +5,18 @@
 
 
 .header {
-    background-image: linear-gradient(to bottom, transparent 75%, #FFFFFF 99.99%), url('../pages/images/casa_home.jpg');
+    background-image: linear-gradient(to bottom, transparent 75%, #FFFFFF 99.99%), url('/public/images/casa_home.jpg');
     background-size: cover;
   }
+
+#header{
+    background-image:linear-gradient( transparent 0%, #203f538c 0%), url('/public/images/casa_home.jpg');
+    
+}
   
 
 #login{
-    background-image: url('../pages/images/casa_home.jpg'),
+    background-image: url('/public/images/casa_home.jpg'),
     linear-gradient(transparent 0%, #00000053 0%);
     background-size: cover;
 }
@@ -25,17 +30,12 @@
     background: #a8a86f;
 }
 
-#uwu {
-    background-image:
-        linear-gradient(transparent 0%, #00000053 0%),
-        url('../pages/images/casa4.jpg');
-    background-size: cover;
-}
+
 
 #ala {
     background-image:
         linear-gradient(transparent 0%, #00000053 0%),
-        url('../pages/images/casa5.png');
+        url('/public/images/casa5.png');
 
 }
 
@@ -51,4 +51,5 @@
     --tw-backdrop-blur: blur(4px);
     backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
+
 

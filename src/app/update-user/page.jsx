@@ -8,7 +8,7 @@ import {AiOutlineFileImage} from 'react-icons/ai'
 import Navar from '@/components/home/nav'
 import { CiLocationOn } from 'react-icons/ci'
 
-const PublicEdit = (ctx) =>{
+const UserEdit = (ctx) =>{
 
     const CLOUD_NAME = 'do0puev9t'
     const UPLOAD_PRESET = 'my_shop_proyect_web'
@@ -25,7 +25,7 @@ const PublicEdit = (ctx) =>{
         async function fetchPublic(){
             const res = await fetch(`http://localhost:3000/api/publicaction/${ctx.params.id}`)
 
-            const publics = await res.json()
+            const users = await res.json()
 
             setUbi(publics.ubi)
             setDesc(publics.descripcion)
@@ -82,9 +82,8 @@ const PublicEdit = (ctx) =>{
                 throw new Error("Error has ocurred")
             }
 
-            const blog = await res.json()
 
-            router.push(`/public/${blog?._id}`)
+            router.push(`/`)
         }catch(error){
             console.log(error)
         }
@@ -185,4 +184,4 @@ return(
 
 }
 
-export default PublicEdit
+export default UserEdit

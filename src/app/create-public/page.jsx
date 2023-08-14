@@ -134,7 +134,7 @@ export default function createPublic() {
                                 <AiOutlineFileImage className="flex rounded-l-lg bg-white border border-gray-300 p-3 pr-1 w-10 h-11 border-r-transparent" />
                                 <input
                                     className="flex mb-5 h-11 w-full rounded-r-lg border border-l-transparent border-gray-300 bg-white text-gray-900 focus:outline-none focus:bg-slate-200 px-4 py-2 duration-500"
-                                    type="file"
+                                    type="file" accept="image/*"
                                     id="images"
                                     onChange={(e) => setImage(e.target.files[0])}
                                 />

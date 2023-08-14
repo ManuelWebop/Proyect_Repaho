@@ -1,4 +1,4 @@
-import { dbConnect } from "../../utils/mongoose";
+import { dbConnect } from "../../lib/mongoose";
 import bcrypt from "bcrypt";
 import User from "../../../models/User";
 

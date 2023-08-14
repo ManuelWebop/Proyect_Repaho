@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from 'next-auth/providers/credentials'
 import User from '../../../../models/User';
-import { signJwtToken } from '../../../utils/jwt'
+import { signJwtToken } from '../../../lib/jwt'
 import bcrypt from 'bcrypt';
 
 
@@ -15,10 +15,11 @@ const handler = NextAuth({
                 username: { label: 'Email', type: 'text', placeholder: 'John Doe' },
                 password: { label: 'Password', type: 'password' }
             },
+
             async authorize(credentials, req) {
                 const { email, password } = credentials
 
-                
+
 
                 const user = await User.findOne({ email })
 
@@ -32,21 +33,27 @@ const handler = NextAuth({
                     throw new Error("Invalid input")
                 } else {
                     const { password, ...currentUser } = user._doc
-
+                    
                     const accessToken = signJwtToken(currentUser, { expiresIn: '6d' })
+
+                    const userWithProfileImage = currentUser.image
+                        ? { ...currentUser, image: currentUser.image }
+                        : currentUser;
 
                     return {
                         ...currentUser,
-                        accessToken
+                        accessToken,
+                        username: currentUser.username,
                     }
                 }
 
             }
         })
+
     ],
-    
+
     pages: {
-       
+
         signIn: '/login'
     },
     callbacks: {
@@ -54,6 +61,8 @@ const handler = NextAuth({
             if (user) {
                 token.accessToken = user.accessToken
                 token._id = user._id
+                token.username = user.username
+                token.image = user.image
             }
 
             return token
@@ -62,6 +71,8 @@ const handler = NextAuth({
             if (token) {
                 session.user._id = token._id
                 session.user.accessToken = token.accessToken
+                session.user.username = token.username
+                session.user.image = token.image
             }
             return session
         }

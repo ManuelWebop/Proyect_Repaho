@@ -5,7 +5,7 @@
 
 
 .header {
-    background-image: linear-gradient(to bottom, transparent 75%, #FFFFFF 99.99%), url('/public/images/casa_home.jpg');
+    background-image: linear-gradient(to bottom, transparent 75%, #FFFFFF 99.99%);
     background-size: cover;
   }
 

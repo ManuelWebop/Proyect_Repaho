@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
@@ -8,13 +8,31 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { format } from 'timeago.js'
 import Navar from '@/components/home/nav'
+import Comment from '../../../components/shop/comment'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+
 
 const Publics = (ctx) => {
 
     const [publicDetails, setPublicDetails] = useState("")
+
+    const [commentText, setCommentText] = useState("")
+    const [comments, setComments] = useState([])
+
     const router = useRouter()
     const { data: session } = useSession()
 
+    useEffect(() => {
+        async function fetchComments() {
+            const res = await fetch(`http://localhost:3000/api/comment/${ctx.params.id}`, { cache: 'no-store' })
+            const comments = await res.json()
+
+            setComments(comments)
+        }
+        fetchComments()
+    }, [])
 
     useEffect(() => {
         async function fetchPublic() {
@@ -31,16 +49,16 @@ const Publics = (ctx) => {
     const handleDelete = async () => {
         try {
 
-            const confirmModel = confirm("Are you sure you want to delete your public?")
+            const confirmModel = confirm("Deseas realmente eliminar esta publicacion?")
             if (confirmModel) {
-                const res = await fetch(`htpp://localhost:3000/api/publicaction/${ctx.params.id}`, {
+                const res = await fetch(`http://localhost:3000/api/publicaction/${ctx.params.id}`, {
                     headers: {
                         'Authorization': `Bearer ${session?.user?.accessToken}`
                     },
                     method: "DELETE"
                 })
                 if (res.ok) {
-                    router.push('/')
+                    router.push('/shop')
                     setTimeout(() => {
                         window.location.reload()
                     }, 500)
@@ -51,6 +69,37 @@ const Publics = (ctx) => {
             console.log(error)
         }
 
+    }
+
+    const handleComment = async () => {
+        if (commentText?.length < 2) {
+            toast.error("Comment must be a last 2 characters")
+            return
+        }
+        try {
+            const body = {
+                publicId: ctx.params.id,
+                userId: session?.user?._id,
+                text: commentText
+            }
+            const res = await fetch(`http://localhost:3000/api/comment`, {
+                headers: {
+                    'Content-Type': 'applicaction/json',
+                    'Authorization': `Bearer ${session?.user?.accessToken}`
+                },
+                method: "POST",
+                body: JSON.stringify(body)
+            })
+            const newComment = await res.json()
+
+            setComments((prev) => {
+                return [newComment, ...prev]
+            })
+
+            setCommentText("")
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
@@ -87,10 +136,12 @@ const Publics = (ctx) => {
                                                     <AiFillDelete className='ml-2 mt-1' />
                                                 </button>
                                             </div>
+
                                         )
                                         : (
+
                                             <div className="flex w-full flex-row-reverse">
-                                                {/*<img className="h-10 w-10 rounded-full mt-5" src= alt="" />*/}
+                                                <Image className="h-10 w-10 rounded-full" src={publicDetails?.userId?.image ?? '/images/avatar.png'} alt="" width={200} height={200} />
                                                 <h3 className="text-xl m-2">{publicDetails?.userId?.username}</h3>
                                             </div>
                                         )
@@ -110,81 +161,31 @@ const Publics = (ctx) => {
                     <div className=" m-2 flex flex-col w-3/12 shadow-sm rounded-2xl shadow-black h-[55rem] overflow-y-scroll bg-white">
                         <div className="m-1">
                             <p className="m-5 text-2xl font-serif">Comentarios:</p>
-                        </div>{/*
+                        </div>
 
                         <div className="m-3 flex flex-col">
-                            {commit.map((commit) => (
-                                <div className=" bg-slate-100 m-1 rounded-xl">
-                                    <div className="flex">
-                                        <img src={commit.perfil} alt="#" className="h-10 w-10 rounded-full mt-5 ml-5" />
-                                        <h3 className="m-4">{commit.user}</h3>
-                                    </div>
-                                    <div className="flex">
-                                        <p className="m-5 line-clamp-3">{commit.commit}</p>
-                                        
-                                    </div>
-                                </div>
-                            ))}
+                            <div className="flex flex-row">
+                                <input
+                                    className="flex mb-5 h-11 w-full rounded-l-lg border border-r-transparent border-gray-300 bg-white text-gray-900 focus:outline-none focus:bg-slate-200 px-4 py-2 duration-500"
+                                    value={commentText}
+                                    type='text'
+                                    placeholder='Type message...'
+                                    onChange={(e) => setCommentText(e.target.value)}
+                                />
+                                <button className='bg-slate-900 text-white rounded-r-md h-11 px-5 font-bold hover:bg-yellow-400 hover:text-black duration-300' onClick={handleComment}>Post</button>
+                            </div>
+                            {
+                                comments?.length > 0
+                                    ? comments.map((comment) => (
+                                        <Comment key={comment._id} comment={comment} setComments={setComments} />
+                                    ))
+                                    : <h1 className='ml-1'>Se tu el primer comentario en la pagina :D</h1>
+                            }
+
                         </div>
-                */}
-                        {
-                            /*
-                            <div className="flex flex-col items-center">
-                                        <Image
-                                            src={publicDetails?.ImageUrl}
-                                            className="h-1/2 w-1/2"
-                                            width='750' height='750' />
-                        
-                                        <div className="text-left flex flex-row w-full">
-                                            <h3 className="text-2xl">{publicDetails?.ubi}</h3>
-                                        </div>
-                                        <div className="flex">
-                                            {
-                                                publicDetails?.userId?._id.toString() === session?.user?._id.toString()
-                                                    ? (
-                        
-                                                        <div className='flex flex-row'>
-                                                            <div className="m-2 flex">
-                        
-                                                                <BsFillPencilFill />
-                                                                <Link href={`/public/edit/${ctx.params.id}`}>
-                                                                    Edit
-                                                                </Link>
-                                                            </div>
-                        
-                                                            <div className='m-2 flex flex-auto'>
-                                                                <AiFillDelete />
-                                                                <button onClick={handleDelete}>
-                                                                    Delete
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    )
-                                                    : (
-                        
-                                                        <div>
-                                                            Author: <span>{publicDetails?.userId?.username}</span>
-                                                        </div>
-                                                    )
-                                            }
-                        
-                                        </div>
-                                        <div>
-                                            Category:
-                                            <span>{publicDetails?.category}</span>
-                                        </div>
-                                        <div className="">
-                                            <p>{publicDetails?.doc}</p>
-                                            <span>Posted:</span><span>{format(publicDetails?.createdAt)}</span>
-                                        </div>
-                                        <div>
-                                            <div></div>
-                                        </div>
-                                    </div >
-                             */
-                        }
                     </div>
                 </div>
+                <ToastContainer />
             </div>
 
 

@@ -1,5 +1,5 @@
-import { dbConnect } from "../../utils/mongoose";
-import { verifyJwtToken } from '../../utils/jwt';
+import { dbConnect } from "../../lib/mongoose";
+import { verifyJwtToken } from '../../lib/jwt';
 import Public from '../../../models/Public';
 
 
@@ -10,7 +10,7 @@ export async function GET(req) {
     const publics = await Public.find({}).limit(16).populate("userId")
     return new Response(JSON.stringify(publics), { status: 200 })
   } catch (error) {
-    return new Response(JSON.stringify(null), { status: 200 })
+    return new Response(JSON.stringify(null), { status: 500 })
   }
 
 }

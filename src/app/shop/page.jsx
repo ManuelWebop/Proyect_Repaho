@@ -1,5 +1,3 @@
-
-
 import Publication from "@/components/shop/publication"
 import Footer from "../../components/home/footer"
 import Navar from "../../components/home/nav"

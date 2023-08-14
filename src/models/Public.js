@@ -13,7 +13,7 @@ const SchemaPublic =new mongoose.Schema({
     },
     descripcion:{
         type: String,
-        require: false,
+        require: true,
         minlenght: [500, 'maximo 500 palabras'] 
 
     },

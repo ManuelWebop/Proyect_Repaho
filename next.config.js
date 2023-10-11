@@ -2,7 +2,7 @@
 const nextConfig = {
     experimental: {
         appDir: true,
-        serverComponentsExternalPackages: ["mongoose"],
+        serverComponentsExternalPackages: ["mongoose"]
     },
     images: {
         remotePatterns: [
@@ -17,5 +17,4 @@ const nextConfig = {
         return config
     }
 }
-
 module.exports = nextConfig

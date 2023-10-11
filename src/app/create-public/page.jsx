@@ -1,5 +1,5 @@
 'use client'
-import Navar from "@/components/home/nav"
+import Navar from '../../components/navar/page'
 import { useSession } from "next-auth/react"
 import React, { useState } from "react"
 import { useRouter } from "next/navigation"
@@ -17,6 +17,7 @@ export default function createPublic() {
     const [descripcion, setDesc] = useState('')
     const [category, setCategory] = useState("Rent")
     const [image, setImage] = useState('')
+    const [price, setPri] = useState('')
 
     const { data: session, status } = useSession()
     const router = useRouter()
@@ -31,7 +32,7 @@ export default function createPublic() {
     const handleSumit = async (e) => {
         e.preventDefault()
 
-        if (!image || !ubi || !descripcion || !category) {
+        if (!image || !ubi || !descripcion || !category || !price) {
             toast.error("All filds are required")
             return
         }
@@ -45,7 +46,7 @@ export default function createPublic() {
                     'Authorization': `Bearer ${session?.user?.accessToken}`
                 },
                 method: 'POST',
-                body: JSON.stringify({ ubi, descripcion, category, ImageUrl, userId: session?.user?._id })
+                body: JSON.stringify({ ubi, descripcion, category, price, ImageUrl, userId: session?.user?._id })
             })
             if (!res.ok) {
                 throw new Error("Error occured")
@@ -87,7 +88,7 @@ export default function createPublic() {
 
     return (
 
-        <div className="bg-gradient-to-t from-slate-950 to-slate-400 h-screen">
+        <div className="bg-gray-100 h-screen">
             <div className="p-5">
                 <Navar />
             </div>
@@ -124,6 +125,17 @@ export default function createPublic() {
                                 <option value="Sale">Venta</option>
                                 <option value="Promotion">Promocion</option>
                             </select>
+                        </div>
+                        <div className="flex flex-col mb-5">
+                            <label className="mb-3 text-2xl">Price</label>
+                            <div className="flex hover:drop-shadow-xl duration-300">
+                                <CiLocationOn className="flex rounded-l-lg bg-white border border-gray-300 p-3 pr-1 w-10 h-11 border-r-transparent" />
+                                <input
+                                    placeholder="Pri..."
+                                    className="mb-5 h-11 w-full rounded-r-lg border border-l-transparent border-gray-300 bg-white text-gray-900 focus:outline-none focus:bg-slate-200 px-4 py-2 duration-500"
+                                    onChange={(e) => setPri(e.target.value)}
+                                />
+                            </div>
                         </div>
                         <div className="flex flex-col mb-5">
                             <label htmlFor="images" className="my-2 mb-5 text-2xl flex-row">

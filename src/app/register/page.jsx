@@ -57,11 +57,25 @@ export default function Register() {
             console.log(error)
         }
     }
+    const Back = [
+        { name: '← Back', href: '..' }
+    ]
     return (
 
         <div className="bg-cover object-cover flex max-sm:flex-col h-screen">
             <Image className="fixed -z-10 max-sm:h-screen w-full h-full max-sm:bg-center" src={`/images/casa_home.jpg`} width={1000} height={1000} alt='#' />
-            <Back />
+            <div className="w-1/2 max-sm:w-full bg-black/40 text-center flex flex-col max-sm:h-1/2 justify-center items-center" >
+                    
+                    <p className="text-white font-bold text-5xl m-3">Crea el camino a tu nuevo hogar</p>
+                        <div className=" text-4xl m-4 font-semibold text-white">
+                            {Back.map((item) => (
+                                <a className="hover:text-yellow-300 duration-500" key={item.name} href={item.href}>
+                                    {item.name}
+                                </a>
+                            ))}
+                        </div>
+
+                </div>
             <div className="w-1/2 max-sm:w-full max-sm:h-1/2 bg-yellow-500/20">
                 <div className="flex bg-gray-300 rounded-xl m-[2.47rem] max-sm:m-5">
                     <form onSubmit={handleSubmit} className="flex flex-col p-10 w-full max-sm:w-1/2">

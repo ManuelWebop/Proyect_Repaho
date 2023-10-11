@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import {AiOutlineFileImage} from 'react-icons/ai'
-import Navar from '@/components/home/nav'
+import Navar from '@/components/navar/page'
 import { CiLocationOn } from 'react-icons/ci'
 
 const PublicEdit = (ctx) =>{
@@ -17,6 +17,7 @@ const PublicEdit = (ctx) =>{
     const [descripcion, setDesc] = useState('')
     const [category, setCategory] = useState("Rent")
     const [image, setImage] = useState('')
+    const [price, setPri] = useState('')
 
     const {data: session,status} = useSession()
     const router = useRouter()
@@ -28,6 +29,7 @@ const PublicEdit = (ctx) =>{
             const publics = await res.json()
 
             setUbi(publics.ubi)
+            setPri(publics.price)
             setDesc(publics.descripcion)
             setCategory(publics.category)
         }
@@ -47,10 +49,11 @@ const PublicEdit = (ctx) =>{
     const handleSumit = async(e) =>{
         e.preventDefault()
 
-        if(ubi === '' || category === '' || descripcion === ''){
+        if(ubi === '' || category === '' || descripcion === '' || price === ''){
             toast.error("All fields are required")
             return
         }
+
         try{
             let ImageUrl = null
             if(image){
@@ -60,7 +63,8 @@ const PublicEdit = (ctx) =>{
             const body = {
                 ubi, 
                 descripcion,
-                category
+                category,
+                price
             }
 
             if(ImageUrl != null){
@@ -83,7 +87,7 @@ const PublicEdit = (ctx) =>{
             }
 
             const blog = await res.json()
-
+            
             router.push(`/public/${blog?._id}`)
         }catch(error){
             console.log(error)
@@ -155,6 +159,19 @@ return(
                                 <option value="Sale">Venta</option>
                                 <option value="Promotion">Promocion</option>
                             </select>
+                        </div>
+                        <div className="flex flex-col mb-5">
+                            <label className="mb-3 text-2xl">Price</label>
+                            <div className="flex hover:drop-shadow-xl duration-300">
+                                <CiLocationOn className="flex rounded-l-lg bg-white border border-gray-300 p-3 pr-1 w-10 h-11 border-r-transparent" />
+                                <input
+                                value={price}
+                                type='number'
+                                    placeholder="Price..."
+                                    className="mb-5 h-11 w-full rounded-r-lg border border-l-transparent border-gray-300 bg-white text-gray-900 focus:outline-none focus:bg-slate-200 px-4 py-2 duration-500"
+                                    onChange={(e) => setPri(e.target.value)}
+                                />
+                            </div>
                         </div>
                         <div className="flex flex-col mb-5">
                             <label htmlFor="images" className="my-2 mb-5 text-2xl flex-row">

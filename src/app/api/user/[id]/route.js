@@ -4,12 +4,12 @@ import User from '@/models/User';
 
 
 export async function GET(req, ctx) {
-    await dbConnect();
+    await dbConnect()
 
-    const id = ctx.params.id;
+    const id = ctx.params.id
 
     try {
-        const user = await User.findById(id).select("-password");
+        const user = await User.findById(id).select("-password")
 
         if (!user) {
             return new Response(JSON.stringify(null), { status: 404 });
@@ -22,9 +22,9 @@ export async function GET(req, ctx) {
 }
 
 export async function PUT(req, ctx) {
-    await dbConnect();
+    await dbConnect()
 
-    const id = ctx.params.id;
+    const id = ctx.params.id
     const accessToken = req.headers.get('authorization')
     
     if (!accessToken) {
@@ -33,9 +33,6 @@ export async function PUT(req, ctx) {
 
 
     const token = accessToken.split(' ')[1];
-
-
-
     const decodedToken = verifyJwtToken(token);
 
     if (!accessToken || !decodedToken) {

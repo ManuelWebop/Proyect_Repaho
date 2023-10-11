@@ -22,6 +22,10 @@ const SchemaPublic =new mongoose.Schema({
         required: true
        
     },
+    price:{
+        type: Number,
+        require:true
+    },
     category: {
         type: String,
         required: true,
@@ -30,7 +34,7 @@ const SchemaPublic =new mongoose.Schema({
             'Sale',
             'Promotion'
         ]
-    }
+    },
 },{
     timestamps: true
 })

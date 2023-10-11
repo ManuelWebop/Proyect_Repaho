@@ -1,5 +1,5 @@
 'use client'
-import Navar from '../components/home/nav'
+import Navar from '../components/navar/page'
 import Info from '../components/home/info'
 import Footer from '../components/home/footer'
 import Image from 'next/image'
@@ -37,7 +37,7 @@ export default async function Home() {
 
                         <div className="flex flex-row max-sm:flex-col m-28 max-sm:m-2 mt-0 justify-center max-sm:mb-5">
                             <p className="flex mt-2 mr-5 text-gray-900 font-medium max-sm:m-5">Aqui puedes buscar tu proximo hogar</p>
-                            <button className="flex w-32 h-10 max-sm:w-full justify-center items-center rounded-lg bg-slate-950 text-white hover:bg-slate-900 duration-300 max-sm:items-center">Shop</button>
+                            <button className="flex w-32 h-10 max-sm:w-full justify-center items-center rounded-lg bg-[#353d53] text-white hover:bg-[#232226] duration-300 max-sm:items-center">Shop</button>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 'use client'
-import Navar from "@/components/home/nav"
+import Navar from "../../components/navar/page"
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
